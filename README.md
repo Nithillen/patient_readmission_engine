@@ -12,51 +12,6 @@ This engine addresses the problem end-to-end: from raw relational data spread ac
 
 ---
 
-## System Architecture
-
-```
-                     RAW CLINICAL DATA
-                 (Patients, Admissions, Diagnoses, Treatments)
-                            |
-                  +---------+---------+
-                  |   SQL PIPELINE    |
-                  |                   |
-                  |  Multi-Table JOINs|
-                  |  CTE + LEAD()     |
-                  |  CASE Statements  |
-                  +---------+---------+
-                            |
-                  Analysis-Ready DataFrame
-                            |
-                  +---------+---------+
-                  | FEATURE ENGINEERING|
-                  |                   |
-                  |  Label Encoding   |
-                  |  Imputation       |
-                  |  Feature Selection|
-                  +---------+---------+
-                            |
-                  +---------+---------+
-                  |  RANDOM FOREST    |
-                  |  CLASSIFIER       |
-                  |                   |
-                  |  Stratified Split |
-                  |  Class Balancing  |
-                  |  5-Fold CV        |
-                  +---------+---------+
-                            |
-                  +---------+---------+
-                  |  SHAP ANALYSIS    |
-                  |                   |
-                  |  Beeswarm Plot    |
-                  |  Waterfall Plot   |
-                  |  Dependence Plot  |
-                  |  Stakeholder Brief|
-                  +-------------------+
-```
-
----
-
 ## SQL Pipeline
 
 The SQL layer handles the data wrangling across four normalized clinical tables. Each script addresses a specific analytical requirement:
